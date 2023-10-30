@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <h1>!!!!!!</h1>
+      <h1>please help me GAAAADD</h1>
       <form onSubmit={getLocation}>
         <input onChange={handleChange} placeholder="Enter Location" />
         <button>EXPLORE!</button>
