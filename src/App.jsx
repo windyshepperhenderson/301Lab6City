@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
 import { useState } from "react";
@@ -24,7 +21,7 @@ function App() {
     //make a GET REQUEST
     const response = await axios.get(API);
 
-    setLocation(res.data[0]);
+    setLocation(response.data[0]);
   }
 
   return (
@@ -32,7 +29,7 @@ function App() {
       <h1>!!!!!!</h1>
       <form onSubmit={getLocation}>
         <input onChange={handleChange} placeholder="Enter Location" />
-        <button>Get Location</button>
+        <button>EXPLORE!</button>
       </form>
 
       <h2>{location.display_name}</h2>
