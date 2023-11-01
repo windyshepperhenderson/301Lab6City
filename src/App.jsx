@@ -8,6 +8,7 @@ function App() {
   const [location, setLocation] = useState({});
   const [search, setSearch] = useState("");
   const [number, setNumber] = useState(10);
+  const [weather, setWeather] = useState([]);
 
   function handleChange(event) {
     setSearch(event.target.value);
@@ -24,6 +25,13 @@ function App() {
 
     // set location to be our response
     setLocation(response.data[0]);
+    getWeather(response.data[0]);
+  }
+
+  async function getWeather(tempLocation) {
+    const API = `http://localhost:8080/weather?lat=${tempLocation.lat}&lon=${tempLocation.lon}&searchQuery=${search}`;
+    const res = await axios.get(API);
+    setWeather(res.data);
   }
 
   function handleNumber(mod) {
@@ -51,8 +59,13 @@ function App() {
       )}
 
       <h2>{location.display_name}</h2>
-      {/* a form with an input for the user to search */}
-      {/* information about the location saved in state */}
+      {weather.map((day) => {
+        return (
+          <p key={day.date}>
+            The weather on {day.date} is {day.description}
+          </p>
+        );
+      })}
     </>
   );
 }
